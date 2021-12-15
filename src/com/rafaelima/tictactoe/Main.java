@@ -1,6 +1,7 @@
 package com.rafaelima.tictactoe;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -9,13 +10,14 @@ public class Main {
     private static char player;
     private static boolean playerSwitch;
     private static boolean endGame = false;
-    private static int numverMoves = 0;
+    private static int numberMoves = 0;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         buildBoard();
 
         while (!endGame){
+
             System.out.println("Digite de 1 a 9 para fazer a jogada.");
             showBoard();
             move(sc.nextInt());
@@ -43,7 +45,7 @@ public class Main {
             }
             System.out.println("");
         }
-        System.out.println("");
+        //System.out.println("");
     }
 
     public static void move(int move){
@@ -91,6 +93,7 @@ public class Main {
         char boardPosition = board[row][column];
         if(boardPosition == '_'){
             board[row][column] = player;
+            numberMoves++;
             playerSwitch = !playerSwitch;
 
         }else{
@@ -131,9 +134,15 @@ public class Main {
             System.out.printf("%c é o vencedor!%n", board[0][2]);
             endGame = true;
         }
+        if(numberMoves == 9 && !endGame){
+            System.out.println("Deu velha!");
+            endGame = true;
+        }
     }
 
-    public void clearBoard(){
-
+    public static void CPU(){
+        Random cpuMove = new Random();
+        move(cpuMove.nextInt(3));
     }
+
 }
