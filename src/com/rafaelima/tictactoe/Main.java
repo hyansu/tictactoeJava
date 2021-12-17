@@ -101,6 +101,7 @@ public class Main {
             playerSwitch = !playerSwitch;
 
         } else {
+            System.out.println("");
             System.out.println("Jogada invalida, tente novamente!");
         }
     }
